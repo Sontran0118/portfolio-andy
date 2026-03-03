@@ -1,7 +1,4 @@
-import { GitHubProjects } from '@/components/GitHubProjects';
-import { Hero } from '@/components/Hero';
-import { About } from '@/components/About';
-import { Contact } from '@/components/Contact';
+import { Terminal } from '@/components/Terminal';
 
 export const metadata = {
   title: 'Andy Tran | Software Engineer',
@@ -10,13 +7,8 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Hero />
-        <About />
-        <GitHubProjects />
-        <Contact />
-      </div>
+    <main>
+      <Terminal />
     </main>
   );
 }
