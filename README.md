@@ -34,6 +34,32 @@ All copy lives in `lib/content.ts`, ported from the resume at
 number changes on the resume, change it here too rather than letting the two
 drift. `public/resume.pdf` is a copy of that same build.
 
+## The mark
+
+Two road edges converging on a vanishing point with the centre line dashing
+between them — the same silhouette reads as a capital A. It comes out of the
+point-cloud scene rather than being applied on top of it.
+
+The geometry lives in three places and they must change together:
+`components/Mark.tsx` (nav), `app/icon.svg` (modern browsers), and
+`scripts/build-icons.py` (favicon + apple touch icon). The script draws the
+mark with Pillow rather than rasterising the SVG, so the build needs no
+cairo/rsvg toolchain:
+
+```bash
+python3 scripts/build-icons.py     # writes app/favicon.ico + app/apple-icon.png
+```
+
+It asserts the `.ico` really came out multi-size — Pillow derives every entry
+by downsampling the image it is handed, so passing anything but the largest
+render silently yields a single 16x16 entry.
+
+## The portrait
+
+`public/media/andy.jpg`, square-cropped to head-and-shoulders and served
+through `next/image` with `sizes="112px"`. At DPR 2 that resolves to a 256px
+WebP of about 4 KB.
+
 ## The demo clip
 
 `components/DrivingDemo.tsx` renders the autonomy panel. The clip is 5.5 MB,

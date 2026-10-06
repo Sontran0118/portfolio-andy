@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import { Mark } from "@/components/Mark";
 import { navItems, profile } from "@/lib/content";
 
 export function Nav() {
@@ -24,9 +25,13 @@ export function Nav() {
       <nav className="mx-auto flex h-14 max-w-[1400px] items-center justify-between px-5 sm:px-8">
         <a
           href="#top"
-          className="text-[13px] font-medium tracking-[0.18em] text-white/90 uppercase transition-opacity hover:opacity-70"
+          aria-label={`${profile.name} — back to top`}
+          className="flex items-center gap-2.5 text-white/90 transition-opacity hover:opacity-70"
         >
-          {profile.name}
+          <Mark className="h-[22px] w-[22px] shrink-0" />
+          <span className="text-[13px] font-medium tracking-[0.18em] uppercase">
+            {profile.name}
+          </span>
         </a>
 
         <ul className="hidden items-center gap-1 md:flex">

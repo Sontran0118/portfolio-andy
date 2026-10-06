@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <!-- Site mark: road edges converging on a vanishing point, centre line
+       dashing away between them. Same geometry as components/Mark.tsx and
+       scripts/build-icons.py — change all three together. -->
+  <rect width="24" height="24" rx="5.3" fill="#08080a"/>
+  <g stroke="#ffffff" fill="none" stroke-linecap="round">
+    <path d="M2.6 21 L10.4 5.4" stroke-width="2"/>
+    <path d="M21.4 21 L13.6 5.4" stroke-width="2"/>
+    <path d="M12 20.6 L12 17.4" stroke-width="2"/>
+    <path d="M12 14.3 L12 12.7" stroke-width="1.7"/>
+  </g>
+</svg>
