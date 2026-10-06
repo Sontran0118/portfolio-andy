@@ -62,6 +62,15 @@ const FRAGMENT_SHADER = /* glsl */ `
   }
 `;
 
+/** How far ahead the camera aims. */
+const LOOK_DISTANCE = 60;
+/**
+ * Metres the aim point sits above the camera. Raising this pitches the camera
+ * up and pushes the horizon further down the frame; ~5 puts it near 60% of
+ * viewport height, leaving the top clear for copy.
+ */
+const HORIZON_LIFT = 5.0;
+
 type RoadSceneProps = {
   /** Live scroll progress in 0..1, read without re-rendering React. */
   progress: React.RefObject<number>;
@@ -118,14 +127,18 @@ export function RoadScene({ progress, pointer }: RoadSceneProps) {
     // Glide forward through the cloud across the whole page, and dip the
     // camera slightly toward the surface as it goes.
     const travel = ROAD.zNear - 18 - smoothed.current * 210;
+    const height = 2.6 - smoothed.current * 0.9;
     state.camera.position.z = travel;
-    state.camera.position.y = 2.6 - smoothed.current * 0.9;
+    state.camera.position.y = height;
     state.camera.position.x = pointerSmoothed.current.x * 1.1;
 
+    // Aiming above eye level pitches the camera up, which drops the horizon
+    // down the frame. Headings occupy the top half of every panel, and the
+    // horizon is the brightest band in the render — keep them apart.
     state.camera.lookAt(
       pointerSmoothed.current.x * 2.2,
-      1.0 - pointerSmoothed.current.y * 0.6,
-      travel - 60,
+      height + HORIZON_LIFT - pointerSmoothed.current.y * 0.6,
+      travel - LOOK_DISTANCE,
     );
   });
 

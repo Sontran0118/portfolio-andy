@@ -83,7 +83,10 @@ export function SceneCanvas() {
       </Canvas>
       {/* Vignette and horizon wash, so type stays readable over the cloud. */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,rgba(8,8,9,0.82)_100%)]" />
-      <div className="absolute inset-x-0 top-0 h-[32vh] bg-gradient-to-b from-[#08080a] to-transparent" />
+      {/* The horizon is the brightest band in the render and headings sit
+          right on it. Washing the top half down protects every panel's copy
+          without trimming it, and leaves the road itself untouched below. */}
+      <div className="absolute inset-x-0 top-0 h-[52vh] bg-gradient-to-b from-[#08080a] via-[#08080a]/85 to-transparent" />
     </div>
   );
 }

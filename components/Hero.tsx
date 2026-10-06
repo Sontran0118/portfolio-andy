@@ -20,7 +20,7 @@ export function Hero() {
       </div>
 
       <PanelActions>
-        <Action href="#fsd-bike" variant="primary">
+        <Action href="#autonomy" variant="primary">
           View work
         </Action>
         <Action href={profile.resumeUrl} external>

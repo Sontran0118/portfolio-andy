@@ -2,7 +2,7 @@ import { Panel, PanelHeading } from "@/components/Panel";
 import { projects, type Project } from "@/lib/content";
 
 const ORDER: Project["category"][] = [
-  "AI & Robotics",
+  "Autonomy & AI",
   "Systems & Low-Level",
   "Full-Stack Web",
 ];

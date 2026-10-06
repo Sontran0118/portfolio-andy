@@ -1,5 +1,5 @@
 import { Action, Panel, PanelActions, PanelHeading } from "@/components/Panel";
-import { profile } from "@/lib/content";
+import { education, profile } from "@/lib/content";
 
 export function Contact() {
   return (
@@ -23,7 +23,10 @@ export function Contact() {
       </PanelActions>
 
       <footer className="mx-auto w-full max-w-3xl pt-10 text-center">
-        <p className="text-[12px] text-white/35">
+        <p className="text-[13px] text-white/55">
+          {education.degree}, {education.school} · {education.graduation}
+        </p>
+        <p className="mt-3 text-[12px] text-white/35">
           © {new Date().getFullYear()} {profile.name} · Built with Next.js and
           three.js
         </p>

@@ -10,34 +10,35 @@ const inter = Inter({
 });
 
 const DESCRIPTION =
-  "Systems and AI engineer in New York. World models and imitation learning, " +
-  "GPU kernels and network protocols, and full-stack products built on top of them.";
+  "Systems and autonomy engineer in New York. Bare-metal firmware and control " +
+  "loops on a moving car, filesystems and protocols, and the systems built on top.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://sxtdev.com"),
-  title: "Andy Tran — Systems & AI Engineer",
+  metadataBase: new URL("https://www.andyhub.tech"),
+  title: "Andy Tran — Systems & Autonomy Engineer",
   description: DESCRIPTION,
   keywords: [
     "Andy Tran",
     "systems engineer",
     "machine learning",
-    "world models",
+    "autonomous driving",
+    "embedded",
+    "STM32",
     "CUDA",
-    "Go",
     "C++",
     "portfolio",
   ],
   authors: [{ name: "Andy Tran", url: "https://github.com/Sontran0118" }],
   openGraph: {
-    title: "Andy Tran — Systems & AI Engineer",
+    title: "Andy Tran — Systems & Autonomy Engineer",
     description: DESCRIPTION,
     type: "website",
-    url: "https://sxtdev.com",
+    url: "https://www.andyhub.tech",
     siteName: "Andy Tran",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Andy Tran — Systems & AI Engineer",
+    title: "Andy Tran — Systems & Autonomy Engineer",
     description: DESCRIPTION,
   },
 };

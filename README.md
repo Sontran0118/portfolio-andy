@@ -1,7 +1,8 @@
-# sxtdev.com
+# andyhub.tech
 
-Portfolio for Andy Tran. Full-viewport scroll panels over a live point-cloud
-scene rendered with three.js.
+Portfolio for Andy Tran — live at [andyhub.tech](https://www.andyhub.tech).
+Full-viewport scroll panels over a live point-cloud scene rendered with
+three.js.
 
 Previously this repo was an interactive CLI terminal (ASCII panels, simulated
 shell, self-rated skill bars). That build has been removed in favour of a
@@ -15,20 +16,23 @@ design where the work is the content and the scene is the only ornament.
 
 ## Layout
 
-Seven scroll-snapped panels, each a full viewport:
+Eight scroll-snapped panels, each a full viewport:
 
 | Panel | Content |
 | --- | --- |
 | `#top` | Name, title, primary actions |
-| `#fsd-bike` | Autonomous bike / world-model work |
+| `#autonomy` | End-to-end self-driving stack |
 | `#repo-rfq-engine` | Repo RFQ lifecycle engine |
-| `#leetlang` | Leet Lang |
+| `#filesystem-pcie` | Unix filesystem & PCIe transaction layer |
+| `#networked-systems` | Protocol design & concurrent servers |
 | `#capabilities` | What I work in, grouped by use |
 | `#index` | Everything else, as a dense list |
 | `#contact` | Email, LinkedIn, GitHub |
 
-All copy lives in `lib/content.ts`. Nothing is hard-coded into a component —
-edit that one file to change the site.
+All copy lives in `lib/content.ts`, ported from the resume at
+`~/Resume/main.tex`. Every figure on the site appears there verbatim — if a
+number changes on the resume, change it here too rather than letting the two
+drift. `public/resume.pdf` is a copy of that same build.
 
 ## The scene
 

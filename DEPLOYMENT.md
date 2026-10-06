@@ -1,108 +1,52 @@
-# 🚀 Deployment Guide for sxtdev.com
+# Deployment
 
-## Quick Deploy to Vercel (5 minutes)
+The site is already deployed. This file records how it is wired, not how to
+set it up from scratch.
 
-### Step 1: Push to GitHub
+## Current state
 
-```bash
-# Create a new repository on GitHub: https://github.com/new
-# Repository name: sxtdev-portfolio
+| | |
+| --- | --- |
+| Repo | `github.com/Sontran0118/portfolio-andy` |
+| Host | Vercel, building on push to `main` |
+| Primary domain | `www.andyhub.tech` — this is the URL printed on the resume |
+| Also serving | `portfolio-andy.vercel.app`, `portfolio-andy-olive.vercel.app`, `portfolio-andy-git-main-sontran0118s-projects.vercel.app` |
 
-# Then push your code:
-git remote add origin https://github.com/Sontran0118/sxtdev-portfolio.git
-git branch -M main
-git push -u origin main
-```
+Pushing to `main` updates all of the above, including `andyhub.tech`. There is
+no staging step — treat a push as publishing.
 
-### Step 2: Deploy on Vercel
-
-1. Go to https://vercel.com/login
-2. Sign in with GitHub
-3. Click "Add New" → "Project"
-4. Import `Sontran0118/sxtdev-portfolio`
-5. Click "Deploy" (Vercel auto-detects Next.js)
-6. Wait 2-3 minutes for deployment
-
-**Result**: Your site will be live at `https://sxtdev-portfolio.vercel.app`
-
-### Step 3: Connect Custom Domain (sxtdev.com)
-
-1. In Vercel Dashboard → Project Settings → Domains
-2. Click "Add Domain"
-3. Enter: `sxtdev.com`
-4. Vercel will provide DNS records
-
-**Update your domain DNS (at your domain registrar):**
-
-| Type  | Name | Value              | TTL  |
-|-------|------|--------------------|------|
-| A     | @    | 76.76.21.21        | Auto |
-| CNAME | www  | cname.vercel-dns.com | Auto |
-
-5. Wait for DNS propagation (usually 10-30 minutes)
-6. Visit https://sxtdev.com ✅
-
----
-
-## Alternative: Vercel CLI Deploy
+## Deploying
 
 ```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Login
-vercel login
-
-# Deploy
-cd sxtdev-portfolio
-vercel
-
-# Follow prompts:
-# - Set up and deploy? Yes
-# - Link to existing project? No
-# - Project name: sxtdev-portfolio
-# - Directory: ./
-# - Override settings? No
-
-# For production:
-vercel --prod
+git push origin main     # Vercel builds and promotes automatically
 ```
 
----
+To check what is live:
 
-## Verify Deployment
+```bash
+curl -sI https://www.andyhub.tech | grep -i x-vercel
+```
 
-After deployment, check:
-- ✅ Site loads at your URL
-- ✅ GitHub projects display correctly
-- ✅ All links work (LinkedIn, GitHub)
-- ✅ Mobile responsive design
-- ✅ Fast loading (< 2 seconds)
+## A note on sxtdev.com
 
----
+Earlier versions of this repo were written for `sxtdev.com`, and the package is
+still named `sxtdev-portfolio`. That domain is registered but **not wired up**:
+DNS returns `NXDOMAIN`, and there is no `CNAME` file here claiming it. It is not
+on the current resume either. Nothing needs to be done about it; just do not
+assume it resolves.
 
-## Troubleshooting
+If it is ever pointed here, two things have to change together:
 
-**GitHub API Rate Limit (60/hour)**
-- Solution: Add `GITHUB_TOKEN` environment variable in Vercel
-- Get token: https://github.com/settings/tokens
-- Add in Vercel: Settings → Environment Variables
+1. Add a `CNAME` file at the repo root containing `sxtdev.com`, and set the
+   registrar's records to Vercel.
+2. Nothing in `vite`/`next` config — this app is served from the domain root
+   already, so no base-path change is required.
 
-**DNS Not Propagating**
-- Wait 24-48 hours (usually faster)
-- Check: https://dnschecker.org
+## Resume asset
 
-**Build Errors**
-- Check Vercel logs: Project → Deployments → Latest → Logs
-- Ensure Node.js version 18+ in Vercel settings
+`public/resume.pdf` is a copy of `~/Resume/main.pdf`. It is not generated at
+build time, so re-copy it whenever the resume changes:
 
----
-
-## Post-Deployment
-
-- Share your portfolio: https://sxtdev.com
-- Update LinkedIn with portfolio link
-- Add portfolio link to GitHub profile
-- Share on social media
-
-**Congrats! Your portfolio is live! 🎉**
+```bash
+cp ~/Resume/main.pdf public/resume.pdf
+```
