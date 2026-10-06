@@ -1,35 +1,32 @@
+import { Action, Panel, PanelActions } from "@/components/Panel";
+import { profile } from "@/lib/content";
+
 export function Hero() {
   return (
-    <section className="pt-20 pb-16 text-center animate-fadeIn">
-      <div className="space-y-6">
-        <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight">
-          Andy Tran
+    <Panel id="top">
+      <div className="mx-auto max-w-4xl pt-10 text-center sm:pt-16">
+        <p className="mb-4 text-[11px] font-semibold tracking-[0.24em] text-white/50 uppercase">
+          {profile.location}
+        </p>
+        <h1 className="text-[clamp(2.6rem,9vw,6.4rem)] leading-[0.98] font-medium tracking-[-0.035em] text-white">
+          {profile.name}
         </h1>
-        <p className="text-xl sm:text-2xl text-blue-400 font-medium">
-          Software Engineer | Systems Programmer | Backend Engineer
+        <p className="mt-4 text-[clamp(1.05rem,2.4vw,1.6rem)] font-light tracking-[-0.01em] text-white/75">
+          {profile.title}
         </p>
-        <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-          Based in New York City · Actively seeking opportunities
+        <p className="mx-auto mt-6 max-w-xl text-[15px] leading-relaxed text-white/55">
+          {profile.tagline}
         </p>
-        <div className="flex gap-4 justify-center pt-4">
-          <a
-            href="https://github.com/Sontran0118"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-all duration-300 transform hover:scale-105"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://www.linkedin.com/in/sontran0118/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-all duration-300 transform hover:scale-105"
-          >
-            LinkedIn
-          </a>
-        </div>
       </div>
-    </section>
+
+      <PanelActions>
+        <Action href="#fsd-bike" variant="primary">
+          View work
+        </Action>
+        <Action href={profile.resumeUrl} external>
+          Resume
+        </Action>
+      </PanelActions>
+    </Panel>
   );
 }
