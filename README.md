@@ -21,7 +21,7 @@ Eight scroll-snapped panels, each a full viewport:
 | Panel | Content |
 | --- | --- |
 | `#top` | Name, title, primary actions |
-| `#autonomy` | End-to-end self-driving stack |
+| `#autonomy` | End-to-end self-driving stack, with the demo clip |
 | `#repo-rfq-engine` | Repo RFQ lifecycle engine |
 | `#filesystem-pcie` | Unix filesystem & PCIe transaction layer |
 | `#networked-systems` | Protocol design & concurrent servers |
@@ -33,6 +33,29 @@ All copy lives in `lib/content.ts`, ported from the resume at
 `~/Resume/main.tex`. Every figure on the site appears there verbatim — if a
 number changes on the resume, change it here too rather than letting the two
 drift. `public/resume.pdf` is a copy of that same build.
+
+## The demo clip
+
+`components/DrivingDemo.tsx` renders the autonomy panel. The clip is 5.5 MB,
+so it is never fetched on page load: `preload="none"` with no `<source>` until
+an IntersectionObserver says the panel is on screen. A visitor who stops at the
+hero pays 84 KB for the poster and nothing else. It then autoplays muted and
+loops, with a pause control; under `prefers-reduced-motion: reduce` it holds on
+the poster and waits to be played.
+
+Re-encode from a source file with:
+
+```bash
+ffmpeg -i source.mp4 -an -c:v libx264 -crf 27 -preset slow \
+  -pix_fmt yuv420p -vf scale=1280:-2 -movflags +faststart \
+  public/media/driving-demo.mp4
+ffmpeg -ss 3 -i source.mp4 -frames:v 1 -vf scale=1280:-2 -q:v 4 \
+  public/media/driving-demo.jpg
+```
+
+Audio is stripped deliberately — the clip autoplays muted, so the track is dead
+weight. A VP9 `.webm` was tried and came out *larger* than the h264 at matched
+quality, so there is only the one encode.
 
 ## The scene
 

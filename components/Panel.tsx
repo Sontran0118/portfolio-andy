@@ -90,19 +90,36 @@ export function PanelHeading({
   eyebrow,
   title,
   body,
+  /**
+   * Smaller type and tighter lead-in, for panels that carry a visual. The
+   * image is the hero there, and a full-size headline pushes the actions off
+   * the bottom of the viewport.
+   */
+  compact = false,
 }: {
   eyebrow?: string;
   title: string;
   body?: string;
+  compact?: boolean;
 }) {
   return (
-    <div className="mx-auto max-w-3xl pt-8 text-center sm:pt-12">
+    <div
+      className={`mx-auto max-w-3xl text-center ${
+        compact ? "pt-2" : "pt-8 sm:pt-12"
+      }`}
+    >
       {eyebrow && (
         <p className="mb-3 text-[11px] font-semibold tracking-[0.22em] text-white/50 uppercase">
           {eyebrow}
         </p>
       )}
-      <h2 className="text-[clamp(2.2rem,6vw,4.1rem)] leading-[1.03] font-medium tracking-[-0.025em] text-white text-balance">
+      <h2
+        className={`${
+          compact
+            ? "text-[clamp(1.9rem,4.2vw,2.9rem)]"
+            : "text-[clamp(2.2rem,6vw,4.1rem)]"
+        } leading-[1.03] font-medium tracking-[-0.025em] text-white text-balance`}
+      >
         {title}
       </h2>
       {body && (
